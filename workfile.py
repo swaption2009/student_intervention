@@ -159,13 +159,13 @@ def train_predict(clf, X_train, y_train, X_test, y_test):
 # from sklearn import model_A
 from sklearn import linear_model
 # from sklearn import model_B
-from sklearn.naive_bayes import MultinomialNB
+from sklearn.naive_bayes import GaussianNB
 # from skearln import model_C
 from sklearn.tree import DecisionTreeClassifier
 
 # TODO: Initialize the three models
 clf_A = linear_model.LogisticRegression()
-clf_B = MultinomialNB()
+clf_B = GaussianNB()
 clf_C = DecisionTreeClassifier(random_state=0)
 
 # TODO: Set up the training set sizes
@@ -198,3 +198,35 @@ train_predict(clf_A, X_train_300, y_train_300, X_test_300, y_test_300)
 train_predict(clf_B, X_train_300, y_train_300, X_test_300, y_test_300)
 train_predict(clf_C, X_train_300, y_train_300, X_test_300, y_test_300)
 
+
+# Model tuning
+# TODO: Import 'GridSearchCV' and 'make_scorer'
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import make_scorer, f1_score
+
+# TODO: Create the parameters list you wish to tune
+parameters = {"criterion": ["gini", "entropy"],
+              "min_samples_split": [2, 10, 20],
+              "max_depth": [None, 2, 5, 10],
+              "min_samples_leaf": [1, 5, 10],
+              "max_leaf_nodes": [None, 5, 10, 20],
+              }
+
+# TODO: Initialize the classifier
+clf = clf_C
+
+# TODO: Make an f1 scoring function using 'make_scorer'
+f1_scorer = make_scorer(f1_score, pos_label="yes")
+
+# TODO: Perform grid search on the classifier using the f1_scorer as the scoring method
+grid_obj = GridSearchCV(clf, parameters,scoring=f1_scorer)
+
+# TODO: Fit the grid search object to the training data and find the optimal parameters
+grid_obj = grid_obj.fit(X_train, y_train)
+
+# Get the estimator
+clf = grid_obj.best_estimator_
+
+# Report the final F1 score for training and testing after parameter tuning
+print "Tuned model has a training F1 score of {:.4f}.".format(predict_labels(clf, X_train, y_train))
+print "Tuned model has a testing F1 score of {:.4f}.".format(predict_labels(clf, X_test, y_test))
