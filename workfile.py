@@ -15,7 +15,7 @@ print "Student data read successfully!"
 n_students = np.shape(student_data)[0]
 
 # TODO: Calculate number of features
-n_features = np.shape(student_data)[1]
+n_features = np.shape(student_data)[1] - 1
 
 # TODO: Calculate passing students
 students_who_pass = np.where(student_data["passed"] == "yes")
@@ -169,34 +169,34 @@ clf_B = GaussianNB()
 clf_C = DecisionTreeClassifier(random_state=0)
 
 # TODO: Set up the training set sizes
-X_train_100, X_test_100, y_train_100, y_test_100 = train_test_split(X_all, y_all, test_size=0.75, random_state=42)
-X_train_100 = X_train_100
-y_train_100 = y_train_100
+X_train_100 = X_train[:100]
+y_train_100 = y_train[:100]
+print "100: ", len(y_train_100)
 
-X_train_200, X_test_200, y_train_200, y_test_200 = train_test_split(X_all, y_all, test_size=0.5, random_state=42)
-X_train_200 = X_train_200
-y_train_200 = y_train_200
+X_train_200 = X_train[:200]
+y_train_200 = y_train[:200]
+print "200: ", len(y_train_200)
 
-X_train_300, X_test_300, y_train_300, y_test_300 = train_test_split(X_all, y_all, test_size=0.25, random_state=42)
-X_train_300 = X_train_300
-y_train_300 = y_train_300
+X_train_300 = X_train[:300]
+y_train_300 = y_train[:300]
+print "300: ", len(y_train_300)
 
 # TODO: Execute the 'train_predict' function for each classifier and each training set size
 
 # set test_size of 0.25 (296 training data)
-train_predict(clf_A, X_train_100, y_train_100, X_test_100, y_test_100)
-train_predict(clf_B, X_train_100, y_train_100, X_test_100, y_test_100)
-train_predict(clf_C, X_train_100, y_train_100, X_test_100, y_test_100)
+train_predict(clf_A, X_train_100, y_train_100, X_test, y_test)
+train_predict(clf_B, X_train_100, y_train_100, X_test, y_test)
+train_predict(clf_C, X_train_100, y_train_100, X_test, y_test)
 
 # set test_size of 0.5 (296 training data)
-train_predict(clf_A, X_train_200, y_train_200, X_test_200, y_test_200)
-train_predict(clf_B, X_train_200, y_train_200, X_test_200, y_test_200)
-train_predict(clf_C, X_train_200, y_train_200, X_test_200, y_test_200)
+train_predict(clf_A, X_train_200, y_train_200, X_test, y_test)
+train_predict(clf_B, X_train_200, y_train_200, X_test, y_test)
+train_predict(clf_C, X_train_200, y_train_200, X_test, y_test)
 
 # set test_size of 0.75 (296 training data)
-train_predict(clf_A, X_train_300, y_train_300, X_test_300, y_test_300)
-train_predict(clf_B, X_train_300, y_train_300, X_test_300, y_test_300)
-train_predict(clf_C, X_train_300, y_train_300, X_test_300, y_test_300)
+train_predict(clf_A, X_train_300, y_train_300, X_test, y_test)
+train_predict(clf_B, X_train_300, y_train_300, X_test, y_test)
+train_predict(clf_C, X_train_300, y_train_300, X_test, y_test)
 
 
 # Model tuning
@@ -205,15 +205,15 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import make_scorer, f1_score
 
 # TODO: Create the parameters list you wish to tune
-parameters = {"criterion": ["gini", "entropy"],
-              "min_samples_split": [2, 10, 20],
-              "max_depth": [None, 2, 5, 10],
-              "min_samples_leaf": [1, 5, 10],
-              "max_leaf_nodes": [None, 5, 10, 20],
-              }
+parameters = {  'C': [0.001, 0.01, 0.1, 1, 10, 100, 1000],
+                'max_iter': [10, 100, 1000],
+                'class_weight': ['balanced', None],
+                'random_state': [0, 42, None]
+             }
+
 
 # TODO: Initialize the classifier
-clf = clf_C
+clf = clf_A
 
 # TODO: Make an f1 scoring function using 'make_scorer'
 f1_scorer = make_scorer(f1_score, pos_label="yes")
@@ -228,5 +228,11 @@ grid_obj = grid_obj.fit(X_train, y_train)
 clf = grid_obj.best_estimator_
 
 # Report the final F1 score for training and testing after parameter tuning
-print "Tuned model has a training F1 score of {:.4f}.".format(predict_labels(clf, X_train, y_train))
+print "Tuned model has a training F1 score of {:.4f}.".format(predict_labels(clf, X_train_100, y_train_100))
+print "Tuned model has a testing F1 score of {:.4f}.".format(predict_labels(clf, X_test, y_test))
+
+print "Tuned model has a training F1 score of {:.4f}.".format(predict_labels(clf, X_train_200, y_train_200))
+print "Tuned model has a testing F1 score of {:.4f}.".format(predict_labels(clf, X_test, y_test))
+
+print "Tuned model has a training F1 score of {:.4f}.".format(predict_labels(clf, X_train_300, y_train_300))
 print "Tuned model has a testing F1 score of {:.4f}.".format(predict_labels(clf, X_test, y_test))
