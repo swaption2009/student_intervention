@@ -11854,14 +11854,14 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Calculate number of students</span>
 <span class="n">n_students</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">student_data</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># TODO: Calculate number of features</span>
-<span class="n">n_features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">student_data</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">n_features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">student_data</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span> <span class="c1"># NOTE: exclude target column</span>
 
 <span class="c1"># TODO: Calculate passing students</span>
 <span class="n">students_who_pass</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">student_data</span><span class="p">[</span><span class="s2">&quot;passed&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;yes&quot;</span><span class="p">)</span>
@@ -11893,7 +11893,7 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Total number of students: 395
-Number of features: 31
+Number of features: 30
 Number of students who passed: 265
 Number of students who failed: 130
 Graduation rate of the class: 67.09%
@@ -11919,7 +11919,7 @@ Graduation rate of the class: 67.09%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Extract feature columns</span>
@@ -12001,7 +12001,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_features</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
@@ -12072,13 +12072,13 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import any additional functionality you may need here</span>
 <span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.24</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="c1"># TODO: Set the number of training points</span>
 <span class="n">num_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -12107,8 +12107,8 @@ Feature values:
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training set has 296 samples.
-Testing set has 99 samples.
+<pre>Training set has 300 samples.
+Testing set has 95 samples.
 </pre>
 </div>
 </div>
@@ -12163,7 +12163,7 @@ Testing set has 99 samples.
 <strong>   - Example of real-world application: logistic regression is used in "Trauma and Injury Severity Score" (TRISS), which is widely used to predict mortality in injured patients. It was originally developed by Boyd et al. using logistic regression (source: Wikipedia).</strong><br>
 <strong>   - Strengths: logistics regression is a special form of generalized linear regression model, which is the most commonly used prediction model and taught at intro of statistics courses. Once the model has been formulated, finding a prediction value is relatively easy to use without the much needed computing power.</strong><br>
 <strong>   - Weaknesses: logistics regression (as in linear regression model) assumes the errors distribution to follow a cumulative normal distribution curve. Also, regression models assume each feature to be independent of each other. However, real-world data don't always follow the normal distribution curve.</strong><br>
-<strong>   - Why use logistics regression in this problem: unlike generalized linear model which gives a predicted value in continuous data type, logistics regression provide a probability of particular outcomes output (in boolean value). We use logistcis regression to give an output whether a student will pass/fail based on the inputs.</strong></p>
+<strong>   - Why use logistics regression in this problem: we apply Logistics Regression classifier to solve this problem because the target variable (output) is either "yes" or "no" value. This yes/no value is known as binary variables that can take only 2 possible value.</strong></p>
 <p><strong>2) Gaussian Naive Bayes classifier</strong><br>
 <strong>   - Example of real-world application: the classic application of Naive Bayes classifies is to classify whether an email is a spam or ham.</strong><br>
 <strong>   - Strengths: Naive Bayes classifier is a form of simple probabilistic machine learning algorithms. So not only the model will output "pass/fail" value, but it will also compute the probabilistic value of a student passing probability based on the input values. Also, Naive Bayes classifies is computationally efficient and performs as well as neural networks and decision tree classifiers. Another advantage of naive Bayes is that it only requires a small number of training data to estimate the parameters necessary for classification.</strong><br>
@@ -12173,7 +12173,7 @@ Testing set has 99 samples.
 <strong>   - Example of real-world application: Decision Tree classifier is widely used in business applications, eg. Customer Relationship Management (CRM). E-commerce sellers collect many users information and online activities. Decision tree classifier helps the sellers identify what features are important to the users and therefore can take action to increase sales.</strong><br>
 <strong>   - Strengths: decision tree's ID3 algorithm works very well in identifying the most important features by computing the enthropy and information gains to create top-down, heuristic trees.</strong><br>
 <strong>   - Weaknesses: ID3 is a greedy algorithm, meaning that it'll take a subset of data and compute local optima, in hoping to find a global optima.  Greedy algorithms mostly (but not always) fail to find the globally optimal solution, because they usually do not operate exhaustively on all the data.</strong><br>
-<strong>   - Why use decision tree classifier in this problem: decision tree algorithm can provide additional useful and actionable information. Other classifiers only give a prediction whether a student will pass/fail. ID3 gives more information to the teachers and therefore can take the right actions accordingly to intervene.</strong></p>
+<strong>   - Why use decision tree classifier in this problem: decision tree classification is suitable for this problem because it's easy to explain the model to non-technical people by visualizing the output in the shape of trees. Furthermore, we also gain the information on the relationship between the 30 features and class ("passed: yes/no"). The information from decision tree algorithms allow teachers to understand which features have the most impact on students' performance. Therefore, teachers can create specific action plans by focusing on certain factors to help the students.</strong></p>
 
 </div>
 </div>
@@ -12198,7 +12198,7 @@ Testing set has 99 samples.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">):</span>
@@ -12287,34 +12287,31 @@ Testing set has 99 samples.
 <span class="n">clf_C</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># TODO: Set up the training set sizes</span>
-<span class="n">X_train_100</span><span class="p">,</span> <span class="n">X_test_100</span><span class="p">,</span> <span class="n">y_train_100</span><span class="p">,</span> <span class="n">y_test_100</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">X_train_100</span> <span class="o">=</span> <span class="n">X_train_100</span>
-<span class="n">y_train_100</span> <span class="o">=</span> <span class="n">y_train_100</span>
+<span class="n">X_train_100</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">y_train_100</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
 
-<span class="n">X_train_200</span><span class="p">,</span> <span class="n">X_test_200</span><span class="p">,</span> <span class="n">y_train_200</span><span class="p">,</span> <span class="n">y_test_200</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">X_train_200</span> <span class="o">=</span> <span class="n">X_train_200</span>
-<span class="n">y_train_200</span> <span class="o">=</span> <span class="n">y_train_200</span>
+<span class="n">X_train_200</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[:</span><span class="mi">200</span><span class="p">]</span>
+<span class="n">y_train_200</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[:</span><span class="mi">200</span><span class="p">]</span>
 
-<span class="n">X_train_300</span><span class="p">,</span> <span class="n">X_test_300</span><span class="p">,</span> <span class="n">y_train_300</span><span class="p">,</span> <span class="n">y_test_300</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">X_train_300</span> <span class="o">=</span> <span class="n">X_train_300</span>
-<span class="n">y_train_300</span> <span class="o">=</span> <span class="n">y_train_300</span>
+<span class="n">X_train_300</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[:</span><span class="mi">300</span><span class="p">]</span>
+<span class="n">y_train_300</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[:</span><span class="mi">300</span><span class="p">]</span>
 
 <span class="c1"># TODO: Execute the &#39;train_predict&#39; function for each classifier and each training set size</span>
 
-<span class="c1"># set test_size of 0.25 (98 training data)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_A</span><span class="p">,</span> <span class="n">X_train_100</span><span class="p">,</span> <span class="n">y_train_100</span><span class="p">,</span> <span class="n">X_test_100</span><span class="p">,</span> <span class="n">y_test_100</span><span class="p">)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_B</span><span class="p">,</span> <span class="n">X_train_100</span><span class="p">,</span> <span class="n">y_train_100</span><span class="p">,</span> <span class="n">X_test_100</span><span class="p">,</span> <span class="n">y_test_100</span><span class="p">)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_C</span><span class="p">,</span> <span class="n">X_train_100</span><span class="p">,</span> <span class="n">y_train_100</span><span class="p">,</span> <span class="n">X_test_100</span><span class="p">,</span> <span class="n">y_test_100</span><span class="p">)</span>
+<span class="c1"># 100 training data</span>
+<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_A</span><span class="p">,</span> <span class="n">X_train_100</span><span class="p">,</span> <span class="n">y_train_100</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_B</span><span class="p">,</span> <span class="n">X_train_100</span><span class="p">,</span> <span class="n">y_train_100</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_C</span><span class="p">,</span> <span class="n">X_train_100</span><span class="p">,</span> <span class="n">y_train_100</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 
-<span class="c1"># set test_size of 0.5 (197 training data)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_A</span><span class="p">,</span> <span class="n">X_train_200</span><span class="p">,</span> <span class="n">y_train_200</span><span class="p">,</span> <span class="n">X_test_200</span><span class="p">,</span> <span class="n">y_test_200</span><span class="p">)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_B</span><span class="p">,</span> <span class="n">X_train_200</span><span class="p">,</span> <span class="n">y_train_200</span><span class="p">,</span> <span class="n">X_test_200</span><span class="p">,</span> <span class="n">y_test_200</span><span class="p">)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_C</span><span class="p">,</span> <span class="n">X_train_200</span><span class="p">,</span> <span class="n">y_train_200</span><span class="p">,</span> <span class="n">X_test_200</span><span class="p">,</span> <span class="n">y_test_200</span><span class="p">)</span>
+<span class="c1"># 200 training data</span>
+<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_A</span><span class="p">,</span> <span class="n">X_train_200</span><span class="p">,</span> <span class="n">y_train_200</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_B</span><span class="p">,</span> <span class="n">X_train_200</span><span class="p">,</span> <span class="n">y_train_200</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_C</span><span class="p">,</span> <span class="n">X_train_200</span><span class="p">,</span> <span class="n">y_train_200</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 
-<span class="c1"># set test_size of 0.75 (296 training data)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_A</span><span class="p">,</span> <span class="n">X_train_300</span><span class="p">,</span> <span class="n">y_train_300</span><span class="p">,</span> <span class="n">X_test_300</span><span class="p">,</span> <span class="n">y_test_300</span><span class="p">)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_B</span><span class="p">,</span> <span class="n">X_train_300</span><span class="p">,</span> <span class="n">y_train_300</span><span class="p">,</span> <span class="n">X_test_300</span><span class="p">,</span> <span class="n">y_test_300</span><span class="p">)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_C</span><span class="p">,</span> <span class="n">X_train_300</span><span class="p">,</span> <span class="n">y_train_300</span><span class="p">,</span> <span class="n">X_test_300</span><span class="p">,</span> <span class="n">y_test_300</span><span class="p">)</span>
+<span class="c1"># 300 training data</span>
+<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_A</span><span class="p">,</span> <span class="n">X_train_300</span><span class="p">,</span> <span class="n">y_train_300</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_B</span><span class="p">,</span> <span class="n">X_train_300</span><span class="p">,</span> <span class="n">y_train_300</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_C</span><span class="p">,</span> <span class="n">X_train_300</span><span class="p">,</span> <span class="n">y_train_300</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12327,60 +12324,60 @@ Testing set has 99 samples.
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training a LogisticRegression using a training set size of 98. . .
-Trained model in 0.0059 seconds
-Made predictions in 0.0005 seconds.
-F1 score for training set: 0.9254.
-Made predictions in 0.0006 seconds.
-F1 score for test set: 0.7255.
-Training a GaussianNB using a training set size of 98. . .
-Trained model in 0.0009 seconds
+<pre>Training a LogisticRegression using a training set size of 100. . .
+Trained model in 0.0390 seconds
+Made predictions in 0.0031 seconds.
+F1 score for training set: 0.8593.
 Made predictions in 0.0003 seconds.
-F1 score for training set: 0.8065.
-Made predictions in 0.0006 seconds.
-F1 score for test set: 0.6884.
-Training a DecisionTreeClassifier using a training set size of 98. . .
-Trained model in 0.0009 seconds
-Made predictions in 0.0002 seconds.
+F1 score for test set: 0.7647.
+Training a GaussianNB using a training set size of 100. . .
+Trained model in 0.0008 seconds
+Made predictions in 0.0003 seconds.
+F1 score for training set: 0.8467.
+Made predictions in 0.0003 seconds.
+F1 score for test set: 0.8029.
+Training a DecisionTreeClassifier using a training set size of 100. . .
+Trained model in 0.0040 seconds
+Made predictions in 0.0008 seconds.
 F1 score for training set: 1.0000.
 Made predictions in 0.0002 seconds.
-F1 score for test set: 0.6631.
-Training a LogisticRegression using a training set size of 197. . .
-Trained model in 0.0017 seconds
+F1 score for test set: 0.6154.
+Training a LogisticRegression using a training set size of 200. . .
+Trained model in 0.0028 seconds
+Made predictions in 0.0004 seconds.
+F1 score for training set: 0.8562.
 Made predictions in 0.0002 seconds.
-F1 score for training set: 0.8658.
+F1 score for test set: 0.7914.
+Training a GaussianNB using a training set size of 200. . .
+Trained model in 0.0007 seconds
+Made predictions in 0.0003 seconds.
+F1 score for training set: 0.8406.
 Made predictions in 0.0002 seconds.
-F1 score for test set: 0.7902.
-Training a GaussianNB using a training set size of 197. . .
-Trained model in 0.0006 seconds
-Made predictions in 0.0003 seconds.
-F1 score for training set: 0.8118.
-Made predictions in 0.0003 seconds.
-F1 score for test set: 0.7407.
-Training a DecisionTreeClassifier using a training set size of 197. . .
+F1 score for test set: 0.7244.
+Training a DecisionTreeClassifier using a training set size of 200. . .
 Trained model in 0.0011 seconds
 Made predictions in 0.0002 seconds.
 F1 score for training set: 1.0000.
-Made predictions in 0.0003 seconds.
-F1 score for test set: 0.7333.
-Training a LogisticRegression using a training set size of 296. . .
-Trained model in 0.0025 seconds
+Made predictions in 0.0001 seconds.
+F1 score for test set: 0.7040.
+Training a LogisticRegression using a training set size of 300. . .
+Trained model in 0.0023 seconds
 Made predictions in 0.0002 seconds.
-F1 score for training set: 0.8474.
+F1 score for training set: 0.8468.
 Made predictions in 0.0002 seconds.
-F1 score for test set: 0.7917.
-Training a GaussianNB using a training set size of 296. . .
-Trained model in 0.0008 seconds
+F1 score for test set: 0.8060.
+Training a GaussianNB using a training set size of 300. . .
+Trained model in 0.0011 seconds
 Made predictions in 0.0004 seconds.
-F1 score for training set: 0.8058.
-Made predictions in 0.0007 seconds.
-F1 score for test set: 0.7591.
-Training a DecisionTreeClassifier using a training set size of 296. . .
-Trained model in 0.0017 seconds
+F1 score for training set: 0.8038.
+Made predictions in 0.0002 seconds.
+F1 score for test set: 0.7634.
+Training a DecisionTreeClassifier using a training set size of 300. . .
+Trained model in 0.0016 seconds
 Made predictions in 0.0002 seconds.
 F1 score for training set: 1.0000.
-Made predictions in 0.0001 seconds.
-F1 score for test set: 0.6250.
+Made predictions in 0.0002 seconds.
+F1 score for test set: 0.6102.
 </pre>
 </div>
 </div>
@@ -12417,24 +12414,24 @@ F1 score for test set: 0.6250.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0059</td>
-<td style="text-align:center">0.0006</td>
-<td style="text-align:center">0.9254</td>
-<td style="text-align:center">0.7255</td>
+<td style="text-align:center">0.0039</td>
+<td style="text-align:center">0.0003</td>
+<td style="text-align:center">0.8593</td>
+<td style="text-align:center">0.7647</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.0017</td>
+<td style="text-align:center">0.0028</td>
 <td style="text-align:center">0.0002</td>
-<td style="text-align:center">0.8658</td>
-<td style="text-align:center">0.7902</td>
+<td style="text-align:center">0.8562</td>
+<td style="text-align:center">0.7914</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0025</td>
+<td style="text-align:center">0.0023</td>
 <td style="text-align:center">0.0002</td>
-<td style="text-align:center">0.8474</td>
-<td style="text-align:center">0.7917</td>
+<td style="text-align:center">0.8468</td>
+<td style="text-align:center">0.8060</td>
 </tr>
 </tbody>
 </table>
@@ -12451,24 +12448,24 @@ F1 score for test set: 0.6250.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0009</td>
-<td style="text-align:center">0.0006</td>
-<td style="text-align:center">0.8065</td>
-<td style="text-align:center">0.6884</td>
+<td style="text-align:center">0.0008</td>
+<td style="text-align:center">0.0003</td>
+<td style="text-align:center">0.8467</td>
+<td style="text-align:center">0.8029</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.0006</td>
-<td style="text-align:center">0.0003</td>
-<td style="text-align:center">0.8118</td>
-<td style="text-align:center">0.7407</td>
+<td style="text-align:center">0.0007</td>
+<td style="text-align:center">0.0002</td>
+<td style="text-align:center">0.8406</td>
+<td style="text-align:center">0.7244</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0008</td>
-<td style="text-align:center">0.0007</td>
-<td style="text-align:center">0.8058</td>
-<td style="text-align:center">0.7591</td>
+<td style="text-align:center">0.0011</td>
+<td style="text-align:center">0.0002</td>
+<td style="text-align:center">0.8038</td>
+<td style="text-align:center">0.7634</td>
 </tr>
 </tbody>
 </table>
@@ -12485,24 +12482,24 @@ F1 score for test set: 0.6250.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0009</td>
+<td style="text-align:center">0.0040</td>
 <td style="text-align:center">0.0002</td>
 <td style="text-align:center">1.000</td>
-<td style="text-align:center">0.6631</td>
+<td style="text-align:center">0.6154</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
 <td style="text-align:center">0.0011</td>
-<td style="text-align:center">0.0003</td>
+<td style="text-align:center">0.0001</td>
 <td style="text-align:center">1.000</td>
-<td style="text-align:center">0.7333</td>
+<td style="text-align:center">0.7040</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0017</td>
-<td style="text-align:center">0.0001</td>
+<td style="text-align:center">0.0016</td>
+<td style="text-align:center">0.0002</td>
 <td style="text-align:center">1.000</td>
-<td style="text-align:center">0.6250</td>
+<td style="text-align:center">0.6102</td>
 </tr>
 </tbody>
 </table>
@@ -12538,7 +12535,7 @@ F1 score for test set: 0.6250.
 <p><strong>Answer: </strong><br>
 <strong>Based on the above table, Logistics Regression classifier is the best model to solve student intervention for two reasons:</strong></p>
 <p><strong>1) Logistic Regression gives the highest F1-score at any training set size. Given that F1-score is the harmonic mean of precision (= TP / TP + FP) and recall (= TP / TP + FN) metrics, we can say logistics regression performs the best compared to the other two classifiers, ie. GaussianNB and Decision Trees.</strong></p>
-<p><strong>2) In terms of prediction time, logistics regression is the fastest among the three classifiers. Although the training time of logistics regression is not the fastest (note: GaussianNB has the fastest training time), we would argue that prediction time is more important than the training time because we often use the model the predict a new set of data, rather than spending our time to train the existing data set over and over again.</strong></p>
+<p><strong>2) In terms of prediction time, logistics regression is as fast as the other two classifiers. Although the training time of logistics regression is not the fastest (note: GaussianNB has the fastest training time), we would argue that prediction time is more important than the training time because we often use the model the predict a new set of data, rather than spending our time to train the existing data set over and over again.</strong></p>
 
 </div>
 </div>
@@ -12559,8 +12556,8 @@ F1 score for test set: 0.6250.
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong><br>
-<strong>Gaussian Naive Bayes is a machine learning algorithm based on Bayes Theorem. Given the overall population of students, it's very hard to identify which students will pass or fail. Bayes Theorem says we can actually improve our prediction by observing a set of evidences in our sample data set.</strong></p>
-<p><strong>Gaussian Naive Bayes classifier observes each of 31 features (evidences) in the data set and compute the probability of each feature relative to the prediction value (ie pass or fail). By combining the probability of each evidence, we can actually come up with a good predictor to compute the probability of a student to pass/fail in the program.</strong></p>
+<strong>We chose logistics regression classifier mainly because the accuracy of this model is pretty high, which is around 0.8 (on the scale of 0 being the poorest to 1 being the best). Our logistic regression model took 30 variables of student information into consideration and find the best model that we can use to predict whether a student will pass or fail in school.</strong></p>
+<p><strong>We used the existing data set of 296 students to train our model. We also tested three different classifiers, ie. logistics regression, Gaussian Naive Bayes, and Decision Tree algorithms. We finally compared the training and test speed as well as performance of each classifier to determine which classifier we should use for this student intervention problem.</strong></p>
 
 </div>
 </div>
@@ -12591,7 +12588,7 @@ F1 score for test set: 0.6250.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;GridSearchCV&#39; and &#39;make_scorer&#39;</span>
@@ -12599,15 +12596,14 @@ F1 score for test set: 0.6250.
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">make_scorer</span><span class="p">,</span> <span class="n">f1_score</span>
 
 <span class="c1"># TODO: Create the parameters list you wish to tune</span>
-<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;criterion&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;gini&quot;</span><span class="p">,</span> <span class="s2">&quot;entropy&quot;</span><span class="p">],</span>
-              <span class="s2">&quot;min_samples_split&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
-              <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
-              <span class="s2">&quot;min_samples_leaf&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
-              <span class="s2">&quot;max_leaf_nodes&quot;</span><span class="p">:</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
-              <span class="p">}</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>  <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span>
+                <span class="s1">&#39;max_iter&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+                <span class="s1">&#39;class_weight&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;balanced&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">],</span>
+                <span class="s1">&#39;random_state&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="bp">None</span><span class="p">]</span>
+             <span class="p">}</span>
 
 <span class="c1"># TODO: Initialize the classifier</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">clf_C</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">clf_A</span>
 
 <span class="c1"># TODO: Make an f1 scoring function using &#39;make_scorer&#39; </span>
 <span class="n">f1_scorer</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">f1_score</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s2">&quot;yes&quot;</span><span class="p">)</span>
@@ -12622,8 +12618,8 @@ F1 score for test set: 0.6250.
 <span class="n">clf</span> <span class="o">=</span> <span class="n">grid_obj</span><span class="o">.</span><span class="n">best_estimator_</span>
 
 <span class="c1"># Report the final F1 score for training and testing after parameter tuning</span>
-<span class="k">print</span> <span class="s2">&quot;Tuned model has a training F1 score of {:.4f}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train_300</span><span class="p">,</span> <span class="n">y_train_300</span><span class="p">))</span>
-<span class="k">print</span> <span class="s2">&quot;Tuned model has a testing F1 score of {:.4f}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_test_300</span><span class="p">,</span> <span class="n">y_test_300</span><span class="p">))</span>
+<span class="k">print</span> <span class="s2">&quot;Tuned model has a training F1 score of {:.4f}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train_100</span><span class="p">,</span> <span class="n">y_train_100</span><span class="p">))</span>
+<span class="k">print</span> <span class="s2">&quot;Tuned model has a testing F1 score of {:.4f}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -12636,10 +12632,10 @@ F1 score for test set: 0.6250.
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Made predictions in 0.0002 seconds.
-Tuned model has a training F1 score of 0.8107.
-Made predictions in 0.0003 seconds.
-Tuned model has a testing F1 score of 0.7556.
+<pre>Made predictions in 0.0001 seconds.
+Tuned model has a training F1 score of 0.8026.
+Made predictions in 0.0004 seconds.
+Tuned model has a testing F1 score of 0.7857.
 </pre>
 </div>
 </div>
@@ -12664,7 +12660,10 @@ Tuned model has a testing F1 score of 0.7556.
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
-<strong>F1 score of the tuned model increases for testing data from 0.6250 to 0.7556, but decreases for training data from 1.000 to 0.8107.Although training F1 score of tuned model decreases, it means the ratio between precision and recall metrics are more balanced.</strong></p>
+<strong>Using 100 training data, F1 score of the tuned model for testing data actually increases from 0.7647 to 0.7857. However, F1 score of the tuned model for training data decreases from 0.8593 to 0.8026.</strong></p>
+<p><strong>Using 200 training data, F1 score of the tuned model for both testing data and training data decrease.</strong><br>
+<strong>F1 score of testing data: from 0.7914 (untuned model) to 0.7857 (tuned model)</strong><br>
+<strong>F1 score of training data: from 0.8562 (untuned model) to 0.8026 (tuned model)</strong></p>
 
 </div>
 </div>
