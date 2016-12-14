@@ -164,39 +164,47 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
 
 # TODO: Initialize the three models
-clf_A = linear_model.LogisticRegression()
+clf_A = linear_model.LogisticRegression(random_state=42)
 clf_B = GaussianNB()
 clf_C = DecisionTreeClassifier(random_state=0)
 
-# TODO: Set up the training set sizes
-X_train_100 = X_train[:100]
-y_train_100 = y_train[:100]
-print "100: ", len(y_train_100)
+# Shortcuts
 
-X_train_200 = X_train[:200]
-y_train_200 = y_train[:200]
-print "200: ", len(y_train_200)
+for clf in [clf_A, clf_B, clf_C]:
+    print "\n{}: \n".format(clf.__class__.__name__)
+    for n in [100, 200, 300]:
+        train_predict(clf, X_train[:n], y_train[:n], X_test, y_test)
 
-X_train_300 = X_train[:300]
-y_train_300 = y_train[:300]
-print "300: ", len(y_train_300)
+# # TODO: Set up the training set sizes
+# X_train_100 = X_train[:100]
+# y_train_100 = y_train[:100]
+# print "100: ", len(y_train_100)
 
-# TODO: Execute the 'train_predict' function for each classifier and each training set size
-
-# set test_size of 0.25 (296 training data)
-train_predict(clf_A, X_train_100, y_train_100, X_test, y_test)
-train_predict(clf_B, X_train_100, y_train_100, X_test, y_test)
-train_predict(clf_C, X_train_100, y_train_100, X_test, y_test)
-
-# set test_size of 0.5 (296 training data)
-train_predict(clf_A, X_train_200, y_train_200, X_test, y_test)
-train_predict(clf_B, X_train_200, y_train_200, X_test, y_test)
-train_predict(clf_C, X_train_200, y_train_200, X_test, y_test)
-
-# set test_size of 0.75 (296 training data)
-train_predict(clf_A, X_train_300, y_train_300, X_test, y_test)
-train_predict(clf_B, X_train_300, y_train_300, X_test, y_test)
-train_predict(clf_C, X_train_300, y_train_300, X_test, y_test)
+#
+# X_train_200 = X_train[:200]
+# y_train_200 = y_train[:200]
+# print "200: ", len(y_train_200)
+#
+# X_train_300 = X_train[:300]
+# y_train_300 = y_train[:300]
+# print "300: ", len(y_train_300)
+#
+# # TODO: Execute the 'train_predict' function for each classifier and each training set size
+#
+# # set test_size of 0.25 (296 training data)
+# train_predict(clf_A, X_train_100, y_train_100, X_test, y_test)
+# train_predict(clf_B, X_train_100, y_train_100, X_test, y_test)
+# train_predict(clf_C, X_train_100, y_train_100, X_test, y_test)
+#
+# # set test_size of 0.5 (296 training data)
+# train_predict(clf_A, X_train_200, y_train_200, X_test, y_test)
+# train_predict(clf_B, X_train_200, y_train_200, X_test, y_test)
+# train_predict(clf_C, X_train_200, y_train_200, X_test, y_test)
+#
+# # set test_size of 0.75 (296 training data)
+# train_predict(clf_A, X_train_300, y_train_300, X_test, y_test)
+# train_predict(clf_B, X_train_300, y_train_300, X_test, y_test)
+# train_predict(clf_C, X_train_300, y_train_300, X_test, y_test)
 
 
 # Model tuning
@@ -228,11 +236,6 @@ grid_obj = grid_obj.fit(X_train, y_train)
 clf = grid_obj.best_estimator_
 
 # Report the final F1 score for training and testing after parameter tuning
-print "Tuned model has a training F1 score of {:.4f}.".format(predict_labels(clf, X_train_100, y_train_100))
-print "Tuned model has a testing F1 score of {:.4f}.".format(predict_labels(clf, X_test, y_test))
-
-print "Tuned model has a training F1 score of {:.4f}.".format(predict_labels(clf, X_train_200, y_train_200))
-print "Tuned model has a testing F1 score of {:.4f}.".format(predict_labels(clf, X_test, y_test))
-
-print "Tuned model has a training F1 score of {:.4f}.".format(predict_labels(clf, X_train_300, y_train_300))
+print "\nTuned Model: \n"
+print "Tuned model has a training F1 score of {:.4f}.".format(predict_labels(clf, X_train, y_train))
 print "Tuned model has a testing F1 score of {:.4f}.".format(predict_labels(clf, X_test, y_test))
